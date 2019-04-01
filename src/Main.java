@@ -9,8 +9,8 @@ public class Main extends AppGameContainer {
     }
 
     public static void main(String[] args) {
-        RaceGame raceGame = new RaceGame("Race Game");
         try {
+            RaceGame raceGame = new RaceGame("Race Game");
             Main game = new Main(raceGame, 640, 480, false);
             game.setShowFPS(false);
             game.start();

@@ -11,6 +11,7 @@ public class Player {
      GameContainer gameContainer;
      int points = 0;
      boolean dead = false;
+     int lifes = 3;
 
     public Player(Circle c, int posX, int posY, GameContainer gameContainer) {
         this.circle = c;

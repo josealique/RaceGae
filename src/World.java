@@ -7,7 +7,7 @@ public class World {
     private Player player;
     private int width;
     private int height;
-    int speed = 1;
+    float speed = 1;
 
     public World(List<Obstacle> obstacles, Player player, int width, int height) {
         this.obstacles = obstacles;
@@ -17,7 +17,7 @@ public class World {
         this.init();
     }
 
-    public int getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
@@ -68,5 +68,6 @@ public class World {
 
     public void updateSpeed(){
         speed += 0.25;
+        System.out.println(speed);
     }
 }

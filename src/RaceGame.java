@@ -32,6 +32,10 @@ public class RaceGame extends BasicGame {
             player.setDirection(0);
         }
         if (!player.dead) {
+            if (player.points % 50 == 0 && player.points != 0){
+                world.updateSpeed();
+                player.updateScore();
+            }
             player.update();
             world.update();
             if (!music.playing()) {
@@ -41,6 +45,10 @@ public class RaceGame extends BasicGame {
         } else {
             music.stop();
         }
+        if (player.dead && player.lifes >= 0){
+            player.lifes--;
+            player.dead = player.lifes < 0;
+        }
     }
 
     @Override
@@ -49,19 +57,22 @@ public class RaceGame extends BasicGame {
             player.render(graphics);
             world.render(graphics);
         } else {
-            restartGame(graphics, gameContainer);
+            String mensaje = "You're dead, press enter to restart";
+            graphics.drawString(mensaje, (gameContainer.getWidth() / 2) - mensaje.length() * 4, gameContainer.getHeight() / 2);
+            restartGame();
         }
+        int lifes = player.lifes == -1 ? 0 : player.lifes;
         graphics.drawString("Score: " + player.getScore(), 10, 10);
+        graphics.drawString("Lifes: " + lifes, 550, 10);
     }
 
-    public void restartGame(Graphics g, GameContainer gm) {
-        String mensaje = "You're dead, press enter to restart";
-        g.drawString(mensaje, (gm.getWidth() / 2) - mensaje.length() * 4, gm.getHeight() / 2);
+    public void restartGame() {
         if (input.isKeyDown(Input.KEY_ENTER)) {
             player.points = 0;
             world.speed = 1;
             world.init();
             player.dead = false;
+            player.lifes = 3;
         }
     }
 }

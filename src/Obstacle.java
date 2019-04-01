@@ -7,10 +7,10 @@ public class Obstacle {
     int x1;
     int x2;
     int x3;
-    int y;
+    float y;
     World world;
 
-    public Obstacle(int x, int x1, int x2, int x3, int y){
+    public Obstacle(int x, int x1, int x2, int x3, float y){
         this.x = x;
         this.x1 = x1;
         this.x2 = x2;
@@ -28,7 +28,6 @@ public class Obstacle {
 
     public void update() {
         this.y += world.getSpeed();
-        System.out.println("aumentando velocidad");
     }
 
     public void setWorld(World world) {
