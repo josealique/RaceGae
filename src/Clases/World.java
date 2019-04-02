@@ -19,6 +19,7 @@ public class World {
         this.init();
     }
 
+    // Getters y Setters
     public Player getPlayer() {
         return player;
     }
@@ -60,6 +61,8 @@ public class World {
         }
     }
 
+    // Método que se encarga de actualizar el mundo
+    // con sus respectivos obstaculos y el jugador
     public void update() {
         for (int i = obstacles.size() - 1; i >= 0; i--) {
             Obstacle o = obstacles.get(i);
@@ -80,12 +83,14 @@ public class World {
         }
     }
 
+    // Método render, se encargará de pintar los obstaculos en el mundo
     public void render(Graphics g) {
         for (Obstacle o : obstacles) {
             o.render(g);
         }
     }
 
+    // Método que se encarga de crear los obstaculos en el mundo
     private Obstacle createObstacle(int y) {
         int x1 = 0;
         int x2 = (int) (Math.random() * width) / 2;
@@ -96,6 +101,7 @@ public class World {
         return obstacle;
     }
 
+    // Actualizamos la velocidad
     public void updateSpeed() {
         speed += 0.25;
     }
