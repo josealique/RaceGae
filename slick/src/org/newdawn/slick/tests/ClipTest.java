@@ -51,7 +51,7 @@ public class ClipTest extends BasicGame {
 		g.setColor(Color.white);
 		g.drawString("1 - No Clipping", 100, 10);
 		g.drawString("2 - Screen Clipping", 100, 30);
-		g.drawString("3 - World Clipping", 100, 50);
+		g.drawString("3 - Clases.World Clipping", 100, 50);
 		
 		if (world) {
 			g.drawString("WORLD CLIPPING ENABLED", 200, 80);

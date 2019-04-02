@@ -1,15 +1,17 @@
+package Clases;
+
 import org.newdawn.slick.Graphics;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class World {
     private List<Obstacle> obstacles = new ArrayList<>();
     private Player player;
     private int width;
     private int height;
-    float speed = 1;
+    private float speed = 1;
 
-    public World(List<Obstacle> obstacles, Player player, int width, int height) {
+    // Constructor
+    World(List<Obstacle> obstacles, Player player, int width, int height) {
         this.obstacles = obstacles;
         this.player = player;
         this.width = width;
@@ -17,11 +19,39 @@ public class World {
         this.init();
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     public float getSpeed() {
         return speed;
     }
 
-    public void init(){
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public void init() {
         int y1 = -20;
         this.obstacles = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -30,18 +60,18 @@ public class World {
         }
     }
 
-    public void update(){
-        for (int i = obstacles.size() -1; i >= 0; i--) {
+    public void update() {
+        for (int i = obstacles.size() - 1; i >= 0; i--) {
             Obstacle o = obstacles.get(i);
             o.update();
-            if (o.y >= player.posY - player.circle.radius){
+            if (o.getY() >= player.getPosY() - player.getCircle().radius) {
                 if (player.colission(o)) {
                     player.updateScore();
                 } else {
-                    player.dead = true;
+                    player.setDead(true);
                 }
             }
-            if (o.y >= player.posY - player.circle.radius){
+            if (o.getY() >= player.getPosY() - player.getCircle().radius) {
                 obstacles.remove(o);
                 Obstacle obstacle = createObstacle(-20);
                 obstacle.setWorld(this);
@@ -50,24 +80,23 @@ public class World {
         }
     }
 
-    public void render(Graphics g){
+    public void render(Graphics g) {
         for (Obstacle o : obstacles) {
             o.render(g);
         }
     }
 
-    private Obstacle createObstacle(int y){
+    private Obstacle createObstacle(int y) {
         int x1 = 0;
         int x2 = (int) (Math.random() * width) / 2;
         int x3 = x2 + 100;
         int x4 = width;
-        Obstacle obstacle = new Obstacle(x1,x2,x3,x4,y);
+        Obstacle obstacle = new Obstacle(x1, x2, x3, x4, y);
         obstacle.setWorld(this);
         return obstacle;
     }
 
-    public void updateSpeed(){
+    public void updateSpeed() {
         speed += 0.25;
-        System.out.println(speed);
     }
 }
